@@ -25,4 +25,4 @@ pemrosesan data.]
 - Perbaikan yang dilakukan: [tuliskan]
 - Hasil pengujian ulang: [tuliskan]
 ## GitHub Pages
-URL: []
+URL: ['https://2611500020-dion.github.io/2611500020-PWD-ti1j-2627/pertemuan-03/']
