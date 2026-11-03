@@ -35,11 +35,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 // Mengamankan data sebelum ditampilkan kembali ke halaman HTML.
 // P6: PHP dasar dan pemrograman sisi peladen
 // Bagian 1: Variabel dan konstanta
-$nim = "0344300002";
-$namaMahasiswa = "Cantika Putih";
+$nim = "2611500020";
+$namaMahasiswa = "muhamad aldi";
 $programStudi = "SI";
 $tahunAkademik = "2026/2027";
-$semester = 4;
+$semester = 1;
 $ipk = 3.75;
 $statusAktif = true;
 $catatanTambahan = null;
@@ -123,6 +123,7 @@ document.getElementById("formPeminjaman")
 				<li><a href="#home">Beranda</a></li>
 				<li><a href="#about">Tentang</a></li>
 				<li><a href="#contact">Kontak</a></li>
+				<li><a href="#peminjaman">Peminjaman Fasilitas</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -333,50 +334,42 @@ document.getElementById("formPeminjaman")
     <button type="submit">Kirim</button>
     <button type="reset">Batal</button>
 </form>
-	<?php
-if (!empty($_SESSION["error_peminjaman"])) {
-    echo "<div class='pesan-error'>";
-    foreach ($_SESSION["error_peminjaman"] as $err) {
-        echo "<p>" .
-            htmlspecialchars($err, ENT_QUOTES, 'UTF-8')
-            . "</p>";
-    }
-    echo "</div>";
-    unset($_SESSION["error_peminjaman"]);
-}
-
-if (!empty($_SESSION["pesan_peminjaman"])
-    && !empty($_SESSION["hasil_peminjaman"])) {
-
-    $data = $_SESSION["hasil_peminjaman"];
-
-    echo "<h3>" .
-        htmlspecialchars($_SESSION["pesan_peminjaman"],
-        ENT_QUOTES, 'UTF-8') . "</h3>";
-
-    echo "<p>Nama: " .
-        htmlspecialchars($data["nama"], ENT_QUOTES, 'UTF-8')
-        . "</p>";
-
-    echo "<p>Fasilitas: " .
-        htmlspecialchars($data["fasilitas"], ENT_QUOTES, 'UTF-8')
-        . "</p>";
-
-    echo "<p>Tanggal: " .
-        htmlspecialchars($data["tanggal"], ENT_QUOTES, 'UTF-8')
-        . "</p>";
-
-    echo "<p>Durasi: " .
-        (int)$data["durasi"] . " jam</p>";
-
-    echo "<p>Keperluan: " .
-        htmlspecialchars($data["keperluan"],
-        ENT_QUOTES, 'UTF-8') . "</p>";
-
-    unset($_SESSION["pesan_peminjaman"]);
-    unset($_SESSION["hasil_peminjaman"]);
-}
+	<?php if (isset($_SESSION["peminjaman"])): 
+    $p = $_SESSION["peminjaman"];
 ?>
+<article class="submission-result">
+  <h3>Data Peminjaman yang Dikirim</h3>
+
+  <p><strong>Nama Penanggung Jawab:</strong>
+    <?= htmlspecialchars($p["nama"], ENT_QUOTES, 'UTF-8') ?>
+  </p>
+
+  <p><strong>Jenis Fasilitas:</strong>
+    <?= htmlspecialchars($p["fasilitas"], ENT_QUOTES, 'UTF-8') ?>
+  </p>
+
+  <p><strong>Tanggal Peminjaman:</strong>
+    <?= htmlspecialchars($p["tanggal"], ENT_QUOTES, 'UTF-8') ?>
+  </p>
+
+  <p><strong>Durasi:</strong>
+    <?= htmlspecialchars((string)$p["durasi"], ENT_QUOTES, 'UTF-8') ?> jam
+  </p>
+
+  <p><strong>Keperluan:</strong>
+    <?= nl2br(htmlspecialchars($p["keperluan"], ENT_QUOTES, 'UTF-8')) ?>
+  </p>
+</article>
+<?php endif; ?>
+
+<?php if (isset($_SESSION["error_peminjaman"])): ?>
+  <p role="alert">
+    <?= htmlspecialchars(
+      $_SESSION["error_peminjaman"],
+      ENT_QUOTES, 'UTF-8'
+    ) ?>
+  </p>
+<?php endif; ?>
 </section>
 	</main>
 

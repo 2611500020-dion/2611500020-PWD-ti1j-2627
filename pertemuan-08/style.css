@@ -248,33 +248,51 @@ footer p {
   }
 }
 
-field-peminjaman {
-    margin-bottom: 18px;
+#peminjaman {
+  padding: 25px;
+  margin-top: 20px;
+  background: #fff;
+  border-radius: 10px;
 }
 
-.field-peminjaman label {
-    display: block;
-    margin-bottom: 7px;
-    font-weight: bold;
+#peminjaman h2 {
+  color: #183b78;
+  margin-bottom: 20px;
 }
 
-.field-peminjaman input,
-.field-peminjaman select,
-.field-peminjaman textarea {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+#peminjaman label {
+  display: block;
+  margin: 10px 0 6px;
+  font-weight: bold;
 }
 
-.field-peminjaman textarea {
-    min-height: 100px;
+#peminjaman input,
+#peminjaman select,
+#peminjaman textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  font: inherit;
 }
 
-#formPeminjaman button {
-    padding: 10px 22px;
-    margin-right: 8px;
-    cursor: pointer;
+#peminjaman textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.form-buttons button {
+  background: #182b55;
+  color: white;
+  border: none;
+  padding: 12px 22px;
+  cursor: pointer;
+  border-radius: 4px;
 }
