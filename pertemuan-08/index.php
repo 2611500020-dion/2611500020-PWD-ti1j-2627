@@ -16,6 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	if (!is_array($minat)) {
 		$minat = [];
 	}
+	
 
 	// Menyimpan setiap nilai formulir ke dalam session secara terpisah.
 	$_SESSION["nama"] = $nama;
@@ -334,6 +335,7 @@ document.getElementById("formPeminjaman")
     <button type="submit">Kirim</button>
     <button type="reset">Batal</button>
 </form>
+
 	<?php if (isset($_SESSION["peminjaman"])): 
     $p = $_SESSION["peminjaman"];
 ?>
@@ -362,14 +364,6 @@ document.getElementById("formPeminjaman")
 </article>
 <?php endif; ?>
 
-<?php if (isset($_SESSION["error_peminjaman"])): ?>
-  <p role="alert">
-    <?= htmlspecialchars(
-      $_SESSION["error_peminjaman"],
-      ENT_QUOTES, 'UTF-8'
-    ) ?>
-  </p>
-<?php endif; ?>
 </section>
 	</main>
 
