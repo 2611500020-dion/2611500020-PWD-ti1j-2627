@@ -247,3 +247,45 @@ footer p {
     display: none;
   }
 }
+
+/* Formulir Peminjaman Fasilitas */
+#peminjaman {
+    padding: 30px;
+}
+
+#peminjaman h2 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+#peminjaman form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#peminjaman label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+#peminjaman input,
+#peminjaman select,
+#peminjaman textarea {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 12px;
+    box-sizing: border-box;
+}
+
+#peminjaman textarea {
+    min-height: 100px;
+}
+
+#peminjaman button {
+    padding: 10px 20px;
+    margin-right: 8px;
+    cursor: pointer;
+}

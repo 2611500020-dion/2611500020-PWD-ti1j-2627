@@ -86,6 +86,22 @@ switch ($programStudi) {
 	<link rel="stylesheet" href="style.css" />
 </head>
 
+<script>
+document.getElementById("formPeminjaman")
+.addEventListener("submit", function(e) {
+    const durasi = Number(this.elements["durasi"].value);
+    const nama = this.elements["nama_pj"].value.trim();
+    const keperluan =
+        this.elements["keperluan"].value.trim();
+
+    if (nama === "" || keperluan === "" ||
+        durasi < 1 || durasi > 24) {
+        e.preventDefault();
+        alert("Periksa kembali formulir peminjaman!");
+    }
+});
+</script>
+
 <body>
 	<header>
 		<div class="header-top">
@@ -278,6 +294,89 @@ switch ($programStudi) {
 				</article>
 			<?php endif; ?>
 		</section>
+   <section id="peminjaman">
+    <h2>Permohonan Peminjaman Fasilitas Kampus</h2>
+
+    <form method="POST" action="#peminjaman"
+          id="formPeminjaman">
+
+        <input type="hidden"
+               name="form_peminjaman" value="1">
+
+        <label>Nama Penanggung Jawab</label>
+        <input type="text" name="nama_pj"
+               maxlength="100" required>
+
+        <label>Jenis Fasilitas</label>
+        <select name="fasilitas" required>
+            <option value="">-- Pilih Fasilitas --</option>
+            <option value="Ruang Kelas">Ruang Kelas</option>
+            <option value="Aula">Aula</option>
+            <option value="Laboratorium Komputer">
+                Laboratorium Komputer
+            </option>
+            <option value="Proyektor">Proyektor</option>
+        </select>
+
+        <label>Tanggal Peminjaman</label>
+        <input type="date" name="tanggal" required>
+
+        <label>Durasi Peminjaman (jam)</label>
+        <input type="number" name="durasi"
+               min="1" max="24" required>
+
+        <label>Keperluan Peminjaman</label>
+        <textarea name="keperluan"
+                  maxlength="1000" required></textarea>
+
+        <button type="submit">Kirim</button>
+        <button type="reset">Batal</button>
+    </form>
+	<?php
+if (!empty($_SESSION["error_peminjaman"])) {
+    echo "<div class='pesan-error'>";
+    foreach ($_SESSION["error_peminjaman"] as $err) {
+        echo "<p>" .
+            htmlspecialchars($err, ENT_QUOTES, 'UTF-8')
+            . "</p>";
+    }
+    echo "</div>";
+    unset($_SESSION["error_peminjaman"]);
+}
+
+if (!empty($_SESSION["pesan_peminjaman"])
+    && !empty($_SESSION["hasil_peminjaman"])) {
+
+    $data = $_SESSION["hasil_peminjaman"];
+
+    echo "<h3>" .
+        htmlspecialchars($_SESSION["pesan_peminjaman"],
+        ENT_QUOTES, 'UTF-8') . "</h3>";
+
+    echo "<p>Nama: " .
+        htmlspecialchars($data["nama"], ENT_QUOTES, 'UTF-8')
+        . "</p>";
+
+    echo "<p>Fasilitas: " .
+        htmlspecialchars($data["fasilitas"], ENT_QUOTES, 'UTF-8')
+        . "</p>";
+
+    echo "<p>Tanggal: " .
+        htmlspecialchars($data["tanggal"], ENT_QUOTES, 'UTF-8')
+        . "</p>";
+
+    echo "<p>Durasi: " .
+        (int)$data["durasi"] . " jam</p>";
+
+    echo "<p>Keperluan: " .
+        htmlspecialchars($data["keperluan"],
+        ENT_QUOTES, 'UTF-8') . "</p>";
+
+    unset($_SESSION["pesan_peminjaman"]);
+    unset($_SESSION["hasil_peminjaman"]);
+}
+?>
+</section>
 	</main>
 
 	<footer>
@@ -287,3 +386,4 @@ switch ($programStudi) {
 </body>
 
 </html>
+
